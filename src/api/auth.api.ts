@@ -31,3 +31,19 @@ export function getMe() {
     '/auth/me',
   );
 }
+
+export function changePassword(
+  currentPassword: string,
+  newPassword: string,
+) {
+  return apiFetch(
+    '/auth/change-password',
+    {
+      method: 'PATCH',
+      body: JSON.stringify({
+        currentPassword,
+        newPassword,
+      }),
+    },
+  );
+}

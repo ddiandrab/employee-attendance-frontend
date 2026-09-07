@@ -26,8 +26,24 @@ export function checkOut() {
   );
 }
 
-export function getMyAttendance() {
+export function getMyAttendance(
+  from?: string,
+  to?: string,
+) {
+  const params = new URLSearchParams();
+
+  if (from) {
+    params.set('from', from);
+  }
+
+  if (to) {
+    params.set('to', to);
+  }
+
+  const query =
+    params.toString();
+
   return apiFetch<AttendanceRecord[]>(
-    '/attendance/me',
+    `/attendance/me${query ? `?${query}` : ''}`,
   );
 }

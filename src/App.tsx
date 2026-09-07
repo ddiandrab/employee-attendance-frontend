@@ -5,59 +5,50 @@ import {
   Routes,
 } from 'react-router-dom';
 
-import {
-  AuthProvider,
-} from './auth/auth.context';
+import { AuthProvider } from './auth/auth.context';
+import { ProtectedRoute } from './auth/protected-route';
 
-import {
-  ProtectedRoute,
-} from './auth/protected-route';
+import { AppLayout } from './components/AppLayout';
 
-import {
-  LoginPage,
-} from './pages/LoginPage';
-
-import {
-  DashboardPage,
-} from './pages/DashboardPage';
-
-import {
-  EmployeesPage,
-} from './pages/EmployeesPage';
+import { DashboardPage } from './pages/DashboardPage';
+import { EmployeesPage } from './pages/EmployeesPage';
+import { LoginPage } from './pages/LoginPage';
 import { ProfilePage } from './pages/ProfilePage';
+import { AttendancePage } from './pages/AttendancePage';
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-
           <Route
             path="/login"
             element={<LoginPage />}
           />
 
-          {/* Authenticated routes */}
           <Route
-            element={
-              <ProtectedRoute />
-            }
+            element={<ProtectedRoute />}
           >
             <Route
-              path="/dashboard"
-              element={
-                <DashboardPage />
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <ProfilePage />
-              }
-            />
+              element={<AppLayout />}
+            >
+              <Route
+                path="/dashboard"
+                element={<DashboardPage />}
+              />
+
+              <Route
+                path="/attendance"
+                element={<AttendancePage />}
+              />
+
+              <Route
+                path="/profile"
+                element={<ProfilePage />}
+              />
+            </Route>
           </Route>
 
-          {/* HR + Admin */}
           <Route
             element={
               <ProtectedRoute
@@ -69,11 +60,13 @@ function App() {
             }
           >
             <Route
-              path="/employees"
-              element={
-                <EmployeesPage />
-              }
-            />
+              element={<AppLayout />}
+            >
+              <Route
+                path="/employees"
+                element={<EmployeesPage />}
+              />
+            </Route>
           </Route>
 
           <Route
@@ -85,7 +78,6 @@ function App() {
               />
             }
           />
-
         </Routes>
       </AuthProvider>
     </BrowserRouter>
