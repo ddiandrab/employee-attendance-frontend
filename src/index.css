@@ -21,3 +21,125 @@ body {
 .page-subtitle {
   color: #6c757d;
 }
+
+/* navigation bar */
+.nav-account {
+  min-width: 0;
+}
+
+.nav-user-email {
+  color: #fff;
+
+  max-width: 220px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-user-role {
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 0.75rem;
+}
+
+.nav-account-section {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logout {
+  white-space: nowrap;
+}
+
+@media (max-width: 991.98px) {
+  .nav-account-section {
+    padding-top: 16px;
+
+    border-top: 1px solid #dee2e6;
+  }
+
+  .nav-user-email {
+    color: #212529;
+    max-width: 100%;
+  }
+
+  .nav-user-role {
+    color: #6c757d;
+  }
+
+  .notification-toggle {
+    color: #212529 !important;
+  }
+
+  .notification-toggle:hover,
+  .notification-toggle:focus {
+    background-color: #f1f3f5;
+  }
+
+  .notification-badge {
+    border-color: #fff;
+  }
+
+  .nav-logout {
+    width: 100%;
+  }
+}
+
+
+/* notification page */
+.notification-page-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.notification-page-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.notification-page-card:hover {
+  transform: translateY(-1px);
+}
+
+.notification-page-card-unread {
+  border-left: 4px solid #0d6efd !important;
+}
+
+.notification-page-indicator {
+  width: 8px;
+  padding-top: 8px;
+  flex-shrink: 0;
+}
+
+.notification-page-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+}
+
+.notification-page-card h5 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.notification-page-card p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 575.98px) {
+  .notification-page-list {
+    gap: 10px;
+  }
+
+  .notification-page-card .btn {
+    font-size: 0.75rem;
+  }
+}

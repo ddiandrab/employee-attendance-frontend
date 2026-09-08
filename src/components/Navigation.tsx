@@ -11,6 +11,7 @@ import {
 } from 'react-router-dom';
 
 import { useAuth } from '../auth/auth.context';
+import { NotificationDropdown } from './NotificationDropdown';
 
 export function Navigation() {
   const {
@@ -62,13 +63,6 @@ export function Navigation() {
             <Nav className="me-auto">
               <Nav.Link
                 as={Link}
-                to="/dashboard"
-              >
-                Dashboard
-              </Nav.Link>
-
-              <Nav.Link
-                as={Link}
                 to="/attendance"
               >
                 My Attendance
@@ -109,24 +103,30 @@ export function Navigation() {
                 </Nav.Link>
               )}
             </Nav>
+            
+            <div className="mt-4 mt-lg-0 ms-lg-3">
+              <div className="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center gap-3">
 
-            <div className="d-flex align-items-lg-center gap-3 mt-3 mt-lg-0">
-              <div className="text-light">
-                <div className="fw-semibold">
-                  {user?.email}
+                <NotificationDropdown />
+
+                <div className="nav-account">
+                  <div className="fw-semibold nav-user-email">
+                    {user?.email}
+                  </div>
+
+                  <small className="nav-user-role">
+                    {user?.role}
+                  </small>
                 </div>
 
-                <small className="text-secondary">
-                  {user?.role}
-                </small>
-              </div>
+                <button
+                  className="btn btn-outline-danger btn-sm nav-logout"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
 
-              <button
-                className="btn btn-outline-light btn-sm"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
+              </div>
             </div>
           </Offcanvas.Body>
         </Navbar.Offcanvas>

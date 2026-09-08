@@ -15,6 +15,8 @@ import { EmployeesPage } from './pages/EmployeesPage';
 import { LoginPage } from './pages/LoginPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { AttendancePage } from './pages/AttendancePage';
+import { AllAttendancePage } from './pages/AllAttendancePage';
+import { NotificationsPage } from './pages/NotificationsPage';
 
 function App() {
   return (
@@ -46,6 +48,11 @@ function App() {
                 path="/profile"
                 element={<ProfilePage />}
               />
+
+              <Route
+                path="/notifications"
+                element={<NotificationsPage />}
+              />
             </Route>
           </Route>
 
@@ -65,6 +72,11 @@ function App() {
               <Route
                 path="/employees"
                 element={<EmployeesPage />}
+              />
+
+              <Route
+                path="/attendance/all"
+                element={<AllAttendancePage />}
               />
             </Route>
           </Route>
