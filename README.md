@@ -1,75 +1,167 @@
-# React + TypeScript + Vite
+# Employee Attendance Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend application for the Employee Attendance system.
+The application provides role-based screens for employees, HR, and administrators.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* Login
+* JWT-based authentication
+* Role-based navigation
+* Employee profile
+* Employee self-service profile update
+* Change password
+* Check-in
+* Check-out
+* Attendance history
+* Attendance date filtering
+* Employee management for HR/Admin
+* All attendance view for HR/Admin
+* In-app notifications
+* Notification read/unread state
+* Responsive UI
 
-## React Compiler
+## Technology Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Technology      | Version / Usage      |
+| --------------- | -------------------- |
+| Node.js         | 24.20.0              |
+| TypeScript      | 6.x                  |
+| React           | 19.x                 |
+| Vite            | 7.x                  |
+| React Router    | 7.x                  |
+| Bootstrap       | 5.x                  |
+| React-Bootstrap | 2.x                  |
+| Fetch API       | HTTP communication   |
+| React Context   | Authentication state |
+| ESLint          | Code linting         |
+| Prettier        | Code formatting      |
+| npm             | Package management   |
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Application Architecture
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The frontend communicates with the NestJS backend through REST APIs.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```text
+React Components
+       │
+       ▼
+     Pages
+       │
+       ▼
+   API Modules
+       │
+       ▼
+   API Client
+       │
+       │ HTTP + JWT
+       ▼
+NestJS Backend
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Authentication state is shared using React Context:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```text
+AuthContext
+    │
+    ├── Navigation
+    ├── Attendance
+    ├── Profile
+    └── Notifications
 ```
+
+## Prerequisites
+
+Make sure the following are installed:
+
+* Node.js 24
+* npm
+
+Check the versions:
+
+```bash
+node --version
+npm --version
+```
+
+## Installation
+
+Enter the frontend directory:
+
+```bash
+cd employee-attendance-frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+## Backend Configuration
+
+The frontend currently communicates with the backend at:
+
+```text
+http://localhost:3000
+```
+
+The API base URL is configured in:
+
+```text
+src/api/client.ts
+```
+
+Current configuration:
+
+```ts
+const API_BASE_URL = 'http://localhost:3000';
+```
+
+Make sure the backend is running before using the application.
+
+## Run the Application
+
+Start the Vite development server:
+
+```bash
+npm run dev
+```
+
+Vite will display the local development URL in the terminal.
+
+Typically:
+
+```text
+http://localhost:5173
+```
+
+Open the URL in your browser.
+
+## Build
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+## Responsive UI
+
+The UI uses:
+
+* Bootstrap 5
+* React-Bootstrap
+* Bootstrap responsive utilities
+
+The application is designed to support both desktop and smaller screen sizes.
+
+
+
